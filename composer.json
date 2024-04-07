@@ -1,6 +1,6 @@
 {
     "name": "cerutisi/catalog-slider-module",
-    "description": "Catalog links module",
+    "description": "Catalog Slider Module for Magento 2",
     "type": "magento2-module",
     "version": "1.0.0",
     "require": {
@@ -8,9 +8,28 @@
         "magento/framework": "^103.0"
     },
     "autoload": {
-        "files": [ "registration.php" ],
+        "files": [
+            "registration.php"
+        ],
         "psr-4": {
-            "Vendor\\ModuleName\\": ""
+            "Alex\\CatalogSliderModule\\": ""
         }
+    },
+    "license": "OSL-3.0",
+    "authors": [
+        {
+            "name": "Alex",
+            "email": "your.email@example.com",
+            "role": "Developer"
+        }
+    ],
+    "extra": {
+        "map": [
+            [
+                "*",
+                "Alex/CatalogSliderModule"
+            ]
+        ]
     }
 }
+
