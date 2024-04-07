@@ -1,0 +1,79 @@
+<?php
+/** @var \Alex\CatalogSliderModule\Widget\CategoryList $block */
+$categories = $block->getCategories();
+$title = $block->getData('title');
+$backgroundColor = $block->getBackgroundColor();
+?>
+<div class="widget-category-slider-wrapper" style="background-color: <?= $block->escapeHtmlAttr($backgroundColor); ?>;">
+    <div class="container">
+        <?php if ($title): ?>
+            <div class="widget-title">
+                <h3><?= $block->escapeHtml($title) ?></h3>
+            </div>
+        <?php endif; ?>
+
+        <?php if (!empty($categories)): ?>
+            <div class="widget-category-slider">
+                <?php foreach ($categories as $category): ?>
+                    <?php
+                    $imageUrl = $block->getImageUrl($category);
+                    $iconUrl = $block->getIconUrl($category);
+                    $placeholderImageUrl = $block->getViewFileUrl('Alex_CatalogSliderModule::images/no-image-icon.png');
+                    $displayImageUrl = $imageUrl ?: $placeholderImageUrl;
+                    ?>
+                    <a href="<?= $block->escapeUrl($category->getUrl()) ?>" class="category-link">
+                        <div class="category-link_wrapper">
+                            <div class="category-link-wrapper_image">
+                                <img src="<?= $block->escapeUrl($displayImageUrl) ?>" alt="<?= $block->escapeHtmlAttr($category->getName()) ?>" class="<?= !$imageUrl ? 'placeholder' : 'category-image' ?> main-image" />
+                                <?php if ($iconUrl): ?>
+                                    <img src="<?= $block->escapeUrl($iconUrl) ?>" alt="Icon <?= $block->escapeHtmlAttr($category->getName()) ?>" class="category-icon" />
+                                <?php endif; ?>
+                            </div>
+                            <h3><?= $block->escapeHtml($category->getName()) ?></h3>
+                        </div>
+                    </a>
+                <?php endforeach; ?>
+            </div>
+
+            <script>
+                require([
+                    'jquery',
+                    'slick'
+                ], function($) {
+                    $(document).ready(function() {
+                        $('.widget-category-slider').slick({
+                            infinite: false,
+                            slidesToShow: 6,
+                            autoplay: <?= $block->isAutoplayEnabled() ? 'true' : 'false'; ?>,
+                            autoplaySpeed: 2000,
+                            responsive: [
+                                {
+                                    breakpoint: 1200,
+                                    settings: {
+                                        slidesToShow: 5,
+                                    }
+                                },
+                                {
+                                    breakpoint: 1024,
+                                    settings: {
+                                        slidesToShow: 4,
+                                    }
+                                },
+                                {
+                                    breakpoint: 480,
+                                    settings: {
+                                        slidesToShow: 1,
+                                    }
+                                }
+                            ]
+                        });
+                    });
+                });
+            </script>
+        <?php else: ?>
+            <div class="no-categories">
+                <p>No categories selected or categories do not exist.</p>
+            </div>
+        <?php endif; ?>
+    </div>
+</div>

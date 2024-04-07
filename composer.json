@@ -1,0 +1,16 @@
+{
+    "name": "Alex/catalog-slider-module",
+    "description": "Catalog links module",
+    "type": "magento2-module",
+    "version": "1.0.0",
+    "require": {
+        "php": "^7.3|^7.4|^8.1",
+        "magento/framework": "^103.0"
+    },
+    "autoload": {
+        "files": [ "registration.php" ],
+        "psr-4": {
+            "Vendor\\ModuleName\\": ""
+        }
+    }
+}

@@ -1,0 +1,80 @@
+@width-100: 100%;
+@width-100px: 100px;
+@width-50: 50%;
+@title-color-black: #000000;
+
+.widget-category-slider-wrapper {
+    padding: 30px 0;
+
+    .widget-category-slider {
+        .category-link {
+            text-align: center;
+
+            .category-link_wrapper {
+                .category-link-wrapper_image {
+                    .lib-css(height, @width-100px);
+                    .lib-css(width, @width-100px);
+                    position: relative;
+                    border-radius: @width-50;
+                    margin: auto;
+
+                    &:after {
+                        .lib-css(height, @width-100);
+                        .lib-css(width, @width-100);
+                        content: '';
+                        position: absolute;
+                        border-radius: @width-50;
+                        background: rgba(0, 0, 0, 0.5);
+                        top: 0;
+                        left: 0;
+                    }
+
+                    .main-image {
+                        .lib-css(height, @width-100);
+                        .lib-css(width, @width-100);
+                        object-fit: cover;
+                        border-radius: @width-50;
+                    }
+
+                    .category-icon {
+                        position: absolute;
+                        top: @width-50;
+                        left: @width-50;
+                        transform: translate(-@width-50, -@width-50);
+                        z-index: 2;
+                    }
+                }
+
+                h3 {
+                    .lib-font-size(14);
+                    .lib-css(color, @title-color-black);
+                }
+            }
+            &:hover {
+                .category-link-wrapper_image {
+
+                    &:after {
+                        background: rgba(255, 255, 255, 0.8);
+                    }
+
+                    &:before {
+                        content: '';
+                        background-image: url('../Alex_CatalogSliderModule/images/next-arrow.png');
+                        width: 32px;
+                        height: 32px;
+                        position: absolute;
+                        top: @width-50;
+                        left: @width-50;
+                        transform: translate(-@width-50, -@width-50);
+                        z-index: 3;
+                    }
+                }
+            }
+        }
+
+        .slick-prev.slick-disabled,
+        .slick-next.slick-disabled {
+            visibility: hidden;
+        }
+    }
+}
